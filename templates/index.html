@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+  {% block content %}  
+  
+  <div class="container">
+    <h1 class="text-center">This is my Todo APP!!</h1>
+    <hr class="text-primary">
+
+    <h2>Add ToDos</h2>
+
+    <form class="row g-3 needs-validation" action="/" method="POST" novalidate>
+        <div class="col-md-12">
+          <label for="title" class="form-label">To do Title</label>
+          <input type="text" class="form-control" name="title" id="title"  required>
+        </div>  
+        
+        <div class="col-md-12">
+          <label for="desc" class="form-label">To do Description</label>
+          <input type="text" class="form-control" name="desc" id="desc"  required>
+        </div>
+        <!-- <div class="col-12">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+            <label class="form-check-label" for="invalidCheck">
+              Agree to terms and conditions
+            </label>
+            <div class="invalid-feedback">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div> -->
+        <div class="col-sm-3">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+<hr>
+<!-- ------------------------------------------------------------------------------------------------------------------------- -->
+<br>
+
+<h2>My todo</h2>
+
+<table class="table">
+    {% if AllTodo|length == 0 %}
+      <div class="alert alert-danger fw-bold" role="alert">
+        No Todos Found. Add your first todo now
+      </div>
+    {% else %}
+    <thead class="text-center">
+        <tr>
+          <th scope="col">Sr No</th>
+          <th scope="col">Title</th>
+          <th scope="col">Description</th>
+          <th  scope="col">Action</th>
+        </tr>
+      </thead>
+    {% endif %}
+    <tbody class="table-group-divider text-center">
+    {% for todo in AllTodo %}
+        <tr>
+          <th>{{loop.index}}</th>
+          <td>{{todo.title}}</td>
+          <td>{{todo.desc}}</td>
+          <td>
+            <a href="/update/{{todo.SrNo}}" type="button" class="btn btn-primary px-3 my-2" >update</a>
+            <a href="/delete/{{todo.SrNo}}" type="button" class="btn btn-danger px-3 my-2" >Delete</a>
+          </td>  
+        </tr>
+      {% endfor %}
+      
+    </tbody>
+  </table>
+</div>
+
+
+  
+  {% endblock content %}
+  

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}  
+
+<div class="container">
+    <h2>Update ToDo</h2>
+    <hr class="text-primary">
+    <form class="row g-3 needs-validation" action="/update/{{todo.SrNo}}/" method="POST" novalidate>
+        <div class="col-md-12">
+          <label for="title" class="form-label">To do Title</label>
+          <input type="text" class="form-control" value="{{todo.title}}" name="title" id="title"  required>
+        </div>  
+        
+        <div class="col-md-12">
+          <label for="desc" class="form-label">To do Description</label>
+          <input type="text" class="form-control"  value="{{todo.desc}}" name="desc" id="desc"  required>
+        </div>
+        <div class="col-sm-3">
+          <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+      </form>
+</div>
+
+{% endblock content %}
